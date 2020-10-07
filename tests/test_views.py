@@ -51,3 +51,8 @@ class TestViews(TestCase):
         status_code = response.status_code
         self.assertEqual(status_code, 204)
         self.assertEqual(PRODUCTS[1], {'id': 1, 'name': 'Raph'})
+
+    def test_put_invalid_product_json(self):
+        response = self.client.put("/api/v1/products/23", json={ 'name': 'Raph'})
+        status_code = response.status_code
+        self.assertEqual(status_code, 422)
